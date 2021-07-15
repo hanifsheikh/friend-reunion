@@ -18,8 +18,8 @@ class CreateEntriesTable extends Migration
             $table->string('name');
             $table->text('photo');
             $table->string('nid')->unique();
-            $table->unsignedBigInteger('contact_no')->unique();
-            $table->unsignedBigInteger('alternative_contact_no')->nullable();
+            $table->string('contact_no')->unique();
+            $table->string('alternative_contact_no')->nullable();
             $table->text('mailing_address');
             $table->string('email_address');
             $table->date('date_of_birth');

@@ -94,7 +94,7 @@ class EntryController extends Controller
         // Get file from request
         $file = $request->file('photo');  
         // Create unique file name
-        $fileNameToStore = $request->nid . '.' . 'webp';
+        $fileNameToStore = str_replace(" ","",$request->nid) . '_'. $request->contact_no . '.' . 'webp';
         // Refer image to method resizeImage
         $save = $this->resizeImage($file, $fileNameToStore);
         if ($save) {
@@ -106,7 +106,7 @@ class EntryController extends Controller
     public function resizeImage($file, $fileNameToStore)
     {
         // Resize image
-        $resize = Image::make($file)->resize(600, null, function ($constraint) {
+        $resize = Image::make($file)->resize(1000, null, function ($constraint) {
             $constraint->aspectRatio();
         })->encode('webp'); 
         // Put image to storage

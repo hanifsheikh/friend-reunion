@@ -23,6 +23,7 @@ class CreateEntriesTable extends Migration
             $table->text('mailing_address');
             $table->string('email_address');
             $table->date('date_of_birth');
+            $table->string('blood_group')->nullable();
             $table->string('marital_status')->default('Single');
             $table->string('marriage_anniversary')->nullable();
             $table->string('spouse_name')->nullable();

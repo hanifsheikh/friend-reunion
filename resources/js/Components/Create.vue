@@ -85,6 +85,7 @@
       </div>
        <p v-if="date_of_birth_error" class="text-red-500  mb-3 text-xs italic">Please select date of birth.</p>
     </div>
+
       <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6">
       <label class="block text-gray-500 text-sm font-bold mb-2" for="marital-status">
         Marital Status 
@@ -156,7 +157,7 @@
         </div>
       </div>
     </div>
-            <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6">
+   <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6">
       <label class="block text-gray-500 text-sm font-bold mb-2" for="religion">
         Religion
       </label>
@@ -174,30 +175,39 @@
         </div>
       </div>
     </div>
- <div class="w-full my-4">
-   <p style="border-bottom:1px solid rgb(210, 210, 210);" ></p>
- </div>
-    <div class="px-4 lg:w-1/2 md:w-full float-left">
-     <p  class="text-md text-gray-700" > <span class="font-bold text-indigo-700">  Event date & time:</span> 24/07/2021 Saturday at 4:30 PM.</p>
-     <p class="text-md text-gray-700"> <span class="font-bold text-indigo-700">Location: </span>Jatrabari, Dhaka.</p> 
-     <p class="text-xs text-gray-500"> [ **Subject to the situation of the present condition and  pandemic observation**]</p>
-  </div>
- <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6 lg:ml-auto lg:mt-0 mt-5">
-      <label class="block text-gray-500 text-sm font-bold mb-2" for="presence-of-upcoming-event">
-        Presence of Upcoming Event
+          <div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6">
+      <label class="block text-gray-500 text-sm font-bold mb-2" for="blood-group">
+        Blood Group
       </label>
       <div class="relative">
-        <select v-model="presence_of_upcoming_event" class="block appearance-none w-full  border border-gray-200 text-gray-500 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" id="presence-of-upcoming-event">
-          <option value="1">Yes </option>
-          <option value="0">No</option> 
+        <select v-model="blood_group" class="block appearance-none w-full  border border-gray-200 text-gray-500 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" id="blood-group">
+          <option value="A+">A+</option> 
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
           <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
       </div>
     </div>
-    
-  </div>
+ <div class="w-full my-6">
+   <p style="border-bottom:1px solid rgb(210, 210, 210);" ></p>
+ </div>
+    <div class="px-4 flex items-center justify-center w-full">
+   <label class="inline-flex">
+        <input type="checkbox" v-model="presence_of_upcoming_event" class="form-checkbox h-5 w-5 text-red-600"><span class="ml-2 text-gray-700"></span>
+    </label>  <span class="text-md font-bold text-gray-700">I agree to join this dynamic team and to ready contribute my competency.  </span>
+     </div> 
+
+
+   </div>
+
+
   <div class="flex w-full justify-center">
     <button v-if="!saving" @click="submit" class="bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-2 px-6 border-b-4 border-indigo-700 hover:border-indigo-500 transition ease-in-out rounded">
   Submit
@@ -264,6 +274,7 @@ export default {
         picture:{},
       saving:false,
       form_submitted: false,
+      blood_group: '',
       name: '',
       name_error: false,
       nid: '',
@@ -376,6 +387,7 @@ setPhoto(){
       formData.append("date_of_birth", this.date_of_birth);
       formData.append("marital_status", this.marital_status);
       formData.append("marriage_anniversary", this.marriage_anniversary);
+      formData.append("blood_group", this.blood_group);
       formData.append("spouse_name", this.spouse_name);
       formData.append("no_of_children", this.no_of_children);
       formData.append("educational_qualification", this.educational_qualification);
@@ -513,6 +525,7 @@ setPhoto(){
         this.mailing_address = '';
         this.mailing_address_error = false;
         this.email_address = '';
+        this.blood_group = '';
         this.email_address_error = false;
         this.date_of_birth = '';
         this.date_of_birth_error = false;

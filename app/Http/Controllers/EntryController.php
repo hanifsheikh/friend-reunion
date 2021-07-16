@@ -84,6 +84,7 @@ class EntryController extends Controller
         $entry->alternative_contact_no = $request->alternative_contact_no;
         $entry->marriage_anniversary = $request->marriage_anniversary;
         $entry->spouse_name = $request->spouse_name;
+        $entry->blood_group = $request->blood_group;
         $entry->no_of_children = $request->no_of_children;
         $entry->save();
         return response()->json($entry);

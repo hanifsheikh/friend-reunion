@@ -24,6 +24,7 @@ class Entry extends Model
                         'educational_qualification',
                         'professional_status',
                         'religion',
+                        'blood_group',
                         'presence_of_upcoming_event'
     ];
 }

@@ -3,7 +3,7 @@ import routes from "./routes";
 
 import store from "../Store/index";
 const router = new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   routes
 });
 

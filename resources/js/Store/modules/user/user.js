@@ -49,13 +49,13 @@ const user = {
     loginUser(context, payload) {
       context.commit("SET_ERROR_MESSAGE", null);
       context.commit("LOADING", true);
-      axios.post(`/login`, payload).then((response) => {
+      axios.post(`./api/login`, payload).then((response) => {
         context.commit("SET_TOKEN", response.data.token);
         localStorage.setItem("token", response.data.token);
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.data.token}`;
-        router.push({ name: "Home" });
+        router.push({ name: "Admin" });
         context.commit("LOADING", false);
       }).catch(error => {
         context.commit("LOADING", false);

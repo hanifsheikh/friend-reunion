@@ -17,7 +17,8 @@ class EntryController extends Controller
      */
     public function index()
     {
-        //
+        $entries = Entry::all();
+        return response()->json($entries, 200);
     }
 
     /**

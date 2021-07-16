@@ -23,6 +23,7 @@ use App\Http\Controllers\EntryController;
 Route::middleware('auth:api')->group(function () {
     // our routes to be protected will go in here
     Route::post('/logout', [ApiAuthController::class ,'logout'])->name('logout.api');
+    Route::get('/fetchTableData', [EntryController::class ,'index'])->name('fetchTableData.api');
 });
 Route::post('/store', [EntryController::class ,'store'])->name('store.api');
 

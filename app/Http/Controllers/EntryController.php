@@ -106,8 +106,9 @@ class EntryController extends Controller
     public function resizeImage($file, $fileNameToStore)
     {
         // Resize image
-        $resize = Image::make($file)->resize(1000, null, function ($constraint) {
-            $constraint->aspectRatio();
+        $resize = Image::make($file)->orientate()->resize(1024, null, function($constraint){ 
+            $constraint->upsize();
+            $constraint->aspectRatio();  
         })->encode('webp'); 
         // Put image to storage
         $save = Storage::put("public/images/{$fileNameToStore}", $resize->__toString());

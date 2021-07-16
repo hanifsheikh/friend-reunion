@@ -299,7 +299,7 @@ export default {
       educational_qualification: 'S.S.C',
       professional_status: 'Unemployed',
       religion: 'Islam',
-      presence_of_upcoming_event: 1,
+      presence_of_upcoming_event: true,
       isShutterOpen: false,
       isShutterLoading: false,
       isPhotoTaken:false 
@@ -539,7 +539,7 @@ setPhoto(){
         this.educational_qualification = 'S.S.C';
         this.professional_status = 'Unemployed';
         this.religion = 'Islam';
-        this.presence_of_upcoming_event = 1
+        this.presence_of_upcoming_event = true
     }
   }
 };

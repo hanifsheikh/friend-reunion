@@ -38,7 +38,7 @@ class EntryController extends Controller
      */
     public function store(Request $request)
     {
-        error_log($request->name);
+   
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10000',
@@ -52,7 +52,7 @@ class EntryController extends Controller
             'educational_qualification' => 'required',
             'professional_status' => 'required',
             'religion' => 'required',
-            'presence_of_upcoming_event' => 'required|boolean'
+            'presence_of_upcoming_event' => 'required'
         ],
          [
         'contact_no.digits_between' => 'Contact no. should be valid',
@@ -80,7 +80,7 @@ class EntryController extends Controller
         $entry->educational_qualification = $request->educational_qualification;
         $entry->professional_status = $request->professional_status;
         $entry->religion = $request->religion;
-        $entry->presence_of_upcoming_event = $request->presence_of_upcoming_event;
+        $entry->presence_of_upcoming_event = $request->presence_of_upcoming_event === "true" ? true : false;
         $entry->alternative_contact_no = $request->alternative_contact_no;
         $entry->marriage_anniversary = $request->marriage_anniversary;
         $entry->spouse_name = $request->spouse_name;

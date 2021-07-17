@@ -8,7 +8,7 @@ import store from './Store/index'
 import App from './App.vue'
 import './axios'
 Vue.use(VueRouter)
-
+Vue.use(require('vue-moment'));
 const app = new Vue({
     el: '#app',
     router,

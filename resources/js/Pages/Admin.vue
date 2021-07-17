@@ -22,16 +22,25 @@
       <!-- ./Header -->
  
    <Table />
- 
+    <TableDataShowModal v-show="showModalActive" />
+    <!-- <TableDataShowModal  /> -->
 </div>
 </template>
 
 <script>
 import Table from "../Components/Table.vue"
+import TableDataShowModal from "../Views/TableDataShowModal.vue"
+   import {mapGetters} from 'vuex';
 export default {
   name: "Admin", 
   components:{
-    Table
+    Table,
+     TableDataShowModal
+  },
+  computed:{
+    ...mapGetters({
+      showModalActive : 'entry/showModalActive',  
+    })
   },
   methods: {
     logout() {

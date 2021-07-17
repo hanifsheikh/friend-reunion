@@ -6,7 +6,10 @@ use App\Models\Entry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response as FacadeResponse;
 use Image;
+
 
 class EntryController extends Controller
 {
@@ -26,9 +29,21 @@ class EntryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getPicture($filename)
     {
-        //
+        $path = storage_path('app/public/images/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = FacadeResponse::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
 
     /**

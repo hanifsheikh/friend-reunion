@@ -26,5 +26,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [ApiAuthController::class, 'logout'])->name('logout.api');
     Route::get('/fetchTableData', [EntryController::class, 'index'])->name('fetchTableData.api');
     Route::get('/getPicture/{filename}', [EntryController::class, 'getPicture'])->name('getPicture.api'); 
+    Route::get('/excel-download', [EntryController::class, 'exportExcel'])->name('excel-download.api'); 
 });
 Route::post('/store', [EntryController::class, 'store'])->name('store.api');

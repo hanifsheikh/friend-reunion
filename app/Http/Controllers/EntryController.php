@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\Exports\EntriesExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Response as FacadeResponse;
 use Image;
+use Carbon\Carbon;
+ 
 
 
 class EntryController extends Controller
@@ -136,15 +140,9 @@ class EntryController extends Controller
         return false;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Entry  $entry
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Entry $entry)
+    public function exportExcel() 
     {
-        //
+        return new EntriesExport();
     }
 
     /**

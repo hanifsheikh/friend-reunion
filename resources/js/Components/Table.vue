@@ -18,36 +18,36 @@
 
                         <tbody v-if="tableData" class="text-gray-600 text-sm font-light">                        
                             <tr v-for="data in tableData" :key="data.id" class="border-b border-gray-200 hover:bg-gray-100">
-                              <td class="px-6 text-left">
+                              <td class="px-6 py-1 text-left">
                                     <div class="flex items-center">
                                         <div class="mr-2">
-                                            <img class="object-contain w-12 h-12" :id="`entry-${data.id}`" :src="getPhoto(data.photo, data.id)"/>
+                                            <img class="object-cover w-12 h-12 rounded-full" :id="`entry-${data.id}`" :src="getPhoto(data.photo, data.id)"/>
                                         </div>
                                         <span class="font-medium">{{data.name}}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 text-left whitespace-nowrap">
+                                <td class="px-6 py-1 text-left whitespace-nowrap">
                                     <div class="flex items-center">                                      
                                         <span class="font-medium">{{data.nid}}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 text-center">
+                                <td class="px-6 py-1 text-center">
                                     <div class="flex items-center justify-center">
                                          <span>{{data.mailing_address}}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 text-center">
+                                <td class="px-6 py-1 text-center">
                                     <div class="flex items-center justify-center">
                                          <span class="font-medium">{{data.contact_no}}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 text-center">
+                                <td class="px-6 py-1 text-center">
                                    <span class="font-medium">{{data.email_address}}</span>
                                 </td>
-                                <td class="px-6 text-center">
+                                <td class="px-6 py-1 text-center">
                                    <span class="font-medium">{{data.date_of_birth | moment("Do MMM YYYY")}}</span>
                                 </td>
-                                <td class="px-6 text-center">
+                                <td class="px-6 py-1 text-center">
                                     <div class="flex item-center justify-center">
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                             <svg @click="viewEntry(data)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -91,7 +91,12 @@ export default {
   },
   methods:{
       viewEntry(data){
-         this.$store.dispatch("entry/viewEntry", data);
+          var photo = document.getElementById(`entry-${data.id}`).src;
+          var payload = {
+              data:data,
+              photo:photo
+          }
+         this.$store.dispatch("entry/viewEntry", payload);
       },
     fetchData(){
         this.$store.dispatch("entry/fetchData");

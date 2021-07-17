@@ -22,7 +22,7 @@
       <!-- ./Header -->
  
    <Table />
-    <TableDataShowModal v-show="showModalActive" />
+    <TableDataShowModal v-show="showModalActive" class="animated fadeIn "/>
     <!-- <TableDataShowModal  /> -->
 </div>
 </template>

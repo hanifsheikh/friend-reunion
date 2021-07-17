@@ -21,28 +21,28 @@
           </svg>
         </div>
       <!--content-->
-   <div class="flex flex-wrap">
+   <div class="flex flex-wrap" v-if="data.data">
         <!--body--> 
    <div class="w-full md:w-1/2 lg:w-1/2 px-3 mb-6">     
    <img class="w-full rounded shadow-md border-8 border-white" :src="data.photo" alt="" v-if="data.photo">
     </div>
     <div class="w-full md:w-1/2 lg:w-1/2 px-3 mt-6">     
-    <p class="font-light text-gray-600 py-1"> Name : <span class="font-medium">{{ data.data ? data.data.name : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> NID/Passport : <span class="font-medium">{{ data.data ? data.data.nid : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Contact No : <span class="font-medium">{{ data.data ? data.data.contact_no : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Alternative Contact No : <span class="font-medium">{{ data.data ? data.data.alternative_contact_no : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Mailing Address : <span class="font-medium">{{ data.data ? data.data.mailing_address : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Email Address : <span class="font-medium">{{ data.data ? data.data.email_address : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Date of Birth : <span class="font-medium">{{ data.data ? (data.data.date_of_birth ) : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Marital Status : <span class="font-medium">{{ data.data ? data.data.marital_status : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Marriage Anniversary : <span class="font-medium">{{ data.data ? data.data.marriage_anniversary : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Spouse Name : <span class="font-medium">{{ data.data ? data.data.spouse_name : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Childrens : <span class="font-medium">{{ data.data ? data.data.no_of_children : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Educational Qualification : <span class="font-medium">{{ data.data ? data.data.educational_qualification : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Professional Status : <span class="font-medium">{{ data.data ? data.data.professional_status : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Religion : <span class="font-medium">{{ data.data ? data.data.religion : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Blood Group : <span class="font-medium">{{ data.data ? data.data.blood_group : null}}</span></p>
-    <p class="font-light text-gray-600 py-1"> Presence of upcoming event : <span class="font-medium">{{ data.data ? (data.data.presence_of_upcoming_event ? "Yes" : "No") : null}}</span></p>
+    <p class="font-light text-gray-600 py-1"> Name : <span class="font-medium">{{ data.data.name }}</span></p>
+    <p class="font-light text-gray-600 py-1"> NID/Passport : <span class="font-medium">{{ data.data.nid }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Contact No : <span class="font-medium">{{ data.data.contact_no }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Alternative Contact No : <span class="font-medium">{{ data.data.alternative_contact_no }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Mailing Address : <span class="font-medium">{{ data.data.mailing_address }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Email Address : <span class="font-medium">{{ data.data.email_address }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Date of Birth : <span class="font-medium">{{ data.data.date_of_birth | moment("Do MMM YYYY") }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Marital Status : <span class="font-medium">{{ data.data.marital_status }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Marriage Anniversary : <span class="font-medium">{{ data.data.marriage_anniversary }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Spouse Name : <span class="font-medium">{{ data.data.spouse_name }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Childrens : <span class="font-medium">{{ data.data.no_of_children }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Educational Qualification : <span class="font-medium">{{ data.data.educational_qualification }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Professional Status : <span class="font-medium">{{ data.data.professional_status }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Religion : <span class="font-medium">{{ data.data.religion }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Blood Group : <span class="font-medium">{{ data.data.blood_group }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Presence of upcoming event : <span class="font-medium">{{ data.data.presence_of_upcoming_event ? "Yes" : "No"}}</span></p>
      
   </div>
  </div>
@@ -54,7 +54,7 @@
 
 <script>  
   import {mapGetters} from 'vuex';
-  
+ 
 export default {
   name: "TableDataShowModal",   
   computed:{

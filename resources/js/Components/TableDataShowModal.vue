@@ -59,7 +59,7 @@ export default {
   name: "TableDataShowModal",   
   computed:{
     ...mapGetters({
-      data : 'entry/showSelectedEntry',  
+      data : 'entry/selectedEntry',  
     })
   },
   methods:{

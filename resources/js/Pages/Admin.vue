@@ -33,6 +33,7 @@
  
    <Table />
     <TableDataShowModal v-show="showModalActive"/>
+    <TableDataDeleteModal v-show="deleteModalActive"/>
     
 </div>
 </template>
@@ -40,17 +41,20 @@
 <script>
 import axios from 'axios'
 import Table from "../Components/Table.vue"
-import TableDataShowModal from "../Views/TableDataShowModal.vue"
+import TableDataShowModal from "../Components/TableDataShowModal.vue"
+import TableDataDeleteModal from "../Components/TableDataDeleteModal.vue"
    import {mapGetters} from 'vuex';
 export default {
   name: "Admin", 
   components:{
     Table,
-     TableDataShowModal
+     TableDataShowModal,
+     TableDataDeleteModal
   },
   computed:{
     ...mapGetters({
       showModalActive : 'entry/showModalActive',  
+      deleteModalActive : 'entry/deleteModalActive',  
     })
   },
   methods: {

@@ -174,8 +174,12 @@ class EntryController extends Controller
      * @param  \App\Models\Entry  $entry
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Entry $entry)
+    public function destroy(Request $request)
     {
-        //
+        $entry = Entry::find($request->id);
+        $response = $entry;
+        Storage::delete("public/images/{$entry->photo}");
+        $entry->delete();
+        return response()->json($response);
     }
 }

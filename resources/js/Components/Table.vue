@@ -102,7 +102,7 @@ export default {
     responseType:'blob'
         }).then(response => {
             var image = document.getElementById(`entry-${id}`);  
-            image.src = window.URL.createObjectURL(new Blob([response.data]));
+            image.src = window.URL.createObjectURL(response.data);
         });
     }
   }

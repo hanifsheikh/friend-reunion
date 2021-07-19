@@ -8,10 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Exports\EntriesExport;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Response as FacadeResponse;
 use Image;
-use Carbon\Carbon;
+use PDF;
  
 
 
@@ -143,6 +142,16 @@ class EntryController extends Controller
     public function exportExcel() 
     {
         return new EntriesExport();
+    }
+    public function exportPDF($id) 
+    {
+        $entry = Entry::find($id);
+        $data = [
+            "title" => $entry->name . ' - ' . $entry->nid,
+            "entry" => $entry,
+         "image" => $entry->photo];
+        $pdf = PDF::loadView('pdf', $data);   
+        return $pdf->download($data['title'].'.pdf');
     }
 
     /**

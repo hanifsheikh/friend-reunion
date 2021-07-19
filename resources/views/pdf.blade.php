@@ -50,7 +50,7 @@
             <p><b> NID/Passport No. : </b>{{$entry->nid}}</p>
             <p><b> Contact No :   </b>{{$entry->contact_no}}</p>
             <p><b> Alternative Contact No : </b>{{$entry->alternative_contact_no}}</p>
-            <p><b> Mailing Address : </b>{{$entry->mailing_address}}.</p>
+            <p><b> Mailing Address : </b>{{$entry->mailing_address}}</p>
             <p><b> Email : </b>{{$entry->email_address}}</p>
             <p><b> Date of Birth : </b>{{Carbon::parse($entry->date_of_birth)->toFormattedDateString()}}</p>
             <p><b> Marital Status : </b>{{$entry->marital_status}}</p>

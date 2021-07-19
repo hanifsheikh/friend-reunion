@@ -8,14 +8,7 @@
 
         <div
             class="w-full max-w-md p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white"
-        >
-            <div class="flex w-full items-center justify-center px-3">
-                <p
-                    class="font-bold text-red-500 py-1 items-center justify-center"
-                >
-                    Are you sure to delete?
-                </p>
-            </div>
+        > 
             <div class="flex items-center justify-center">
                 <div class="flex w-full justify-center items-center px-3 mb-1">
                     <img
@@ -28,7 +21,7 @@
             </div>
             <div class="flex w-full items-center justify-center px-3">
                 <p
-                    class="text-gray-600 py-1 items-center justify-center font-medium"
+                    class="text-gray-600 py-2 items-center justify-center font-bold"
                 >
                     {{ data.data.name }}
                 </p>

@@ -114,7 +114,7 @@ class EntryController extends Controller
         // Get file from request
         $file = $request->file('photo');  
         // Create unique file name
-        $fileNameToStore = str_replace(" ","",$request->nid) . '_'. $request->contact_no . '.' . 'webp';
+        $fileNameToStore = str_replace(" ","",$request->nid) . '_'. $request->contact_no . '.' . 'png';
         // Refer image to method resizeImage
         $save = $this->resizeImage($file, $fileNameToStore);
         if ($save) {
@@ -129,7 +129,7 @@ class EntryController extends Controller
         $resize = Image::make($file)->orientate()->resize(1024, null, function($constraint){ 
             $constraint->upsize();
             $constraint->aspectRatio();  
-        })->encode('webp'); 
+        })->encode('png'); 
         // Put image to storage
         $save = Storage::put("public/images/{$fileNameToStore}", $resize->__toString());
 

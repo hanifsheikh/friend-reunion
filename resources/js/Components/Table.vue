@@ -7,12 +7,12 @@
                         <thead>
                             <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left">Person</th>
-                                <th class="py-3 px-6 text-left">NID/Passport</th>
-                                <th class="py-3 px-6 text-center">Address</th>
-                                <th class="py-3 px-6 text-center">Contact No.</th>
-                                <th class="py-3 px-6 text-center">Email Address</th>
-                                <th class="py-3 px-6 text-center">Date of Birth</th>
-                                <th class="py-3 px-6 text-center">Actions</th>
+                                <th class="py-3 px-3 text-left">NID/Passport</th>
+                                <th class="py-3 px-3 text-center">Address</th>
+                                <th class="py-3 px-3 text-center">Contact No.</th>
+                                <th class="py-3 px-3 text-center">Email Address</th>
+                                <th class="py-3 px-3 text-center">Date of Birth</th>
+                                <th class="py-3 px-3 text-center">Actions</th>
                             </tr>
                         </thead>
 
@@ -21,33 +21,33 @@
                               <td class="px-6 py-1 text-left">
                                     <div class="flex items-center">
                                         <div class="mr-2">
-                                            <img class="object-cover w-12 h-12 rounded-full" :id="`entry-${data.id}`" :src="getPhoto(data.photo, data.id)"/>
+                                            <img class="object-cover w-10 h-10 rounded-full" :id="`entry-${data.id}`" :src="getPhoto(data.photo, data.id)"/>
                                         </div>
                                         <span class="font-medium">{{data.name}}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-1 text-left whitespace-nowrap">
+                                <td class="px-3 py-1 text-left whitespace-nowrap">
                                     <div class="flex items-center">                                      
                                         <span class="font-medium">{{data.nid}}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-1 text-center">
+                                <td class="px-3 w-80 text-center">
                                     <div class="flex items-center justify-center">
                                          <span>{{data.mailing_address}}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-1 text-center">
+                                <td class="px-3 py-1 text-center">
                                     <div class="flex items-center justify-center">
                                          <span class="font-medium">{{data.contact_no}}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-1 text-center">
+                                <td class="px-3 py-1 text-center">
                                    <span class="font-medium">{{data.email_address}}</span>
                                 </td>
-                                <td class="px-6 py-1 text-center">
+                                <td class="px-3 py-1 text-center">
                                    <span class="font-medium">{{data.date_of_birth | moment("Do MMM YYYY")}}</span>
                                 </td>
-                                <td class="px-6 py-1 text-center">
+                                <td class="px-3 py-1 text-center">
                                     <div class="flex item-center justify-center">
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                             <svg @click="viewEntry(data)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -58,7 +58,7 @@
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                             <img @click="downloadPDF(data)" src="/images/pdf.svg" alt="" height="24"> 
                                         </div>
-                                        <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                        <div class="w-4 transform hover:text-purple-500 hover:scale-110">
                                             <svg @click="deleteEntry(data)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg>

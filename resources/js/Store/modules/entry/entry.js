@@ -64,6 +64,10 @@ const entry = {
       state.showModalActive = false;
       state.deleteModalActive = false;
     },
+    SET_BLOB_IMAGE_URL(state, payload) {             
+      var foundIndex = state.tableData.findIndex(x => x.id == payload.id);
+      state.tableData[foundIndex].photo = payload.blob;
+    },
   },
 
   actions: {
@@ -87,6 +91,9 @@ const entry = {
     },
     closeModal(context){
      context.commit("CLOSE_MODAL")
+    },
+    setBlobImageURL(context, payload){
+      context.commit('SET_BLOB_IMAGE_URL', payload);
     },
     fetchData(context) {
       context.commit("SET_ERROR_MESSAGE", null);

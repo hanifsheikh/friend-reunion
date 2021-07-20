@@ -93,13 +93,8 @@ export default {
     this.fetchData();
   },
   methods:{
-      viewEntry(data){
-          var photo = document.getElementById(`entry-${data.id}-image`).src;
-          var payload = {
-              data:data,
-              photo:photo
-          }
-         this.$store.dispatch("entry/viewEntry", payload);
+      viewEntry(data){          
+         this.$store.dispatch("entry/viewEntry", data);
       },
     fetchData(){
         this.$store.dispatch("entry/fetchData");
@@ -113,6 +108,9 @@ export default {
         this.$store.dispatch("entry/deleteModal", payload);
     },
     getPhoto(photo, id){      
+        if(photo.startsWith('blob:http')){
+            return photo
+        }
         axios({url: `./api/getPicture/${photo}`,
             method:'GET',
             responseType:'blob'
@@ -121,6 +119,7 @@ export default {
             var image = document.getElementById(`entry-${id}-image`);
             image.classList.remove('hidden')
             image.src = window.URL.createObjectURL(response.data);  
+            this.$store.dispatch('entry/setBlobImageURL', { blob: image.src , id: id});
             });
     
     },

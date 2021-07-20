@@ -94,7 +94,7 @@ export default {
   },
   methods:{
       viewEntry(data){
-          var photo = document.getElementById(`entry-${data.id}`).src;
+          var photo = document.getElementById(`entry-${data.id}-image`).src;
           var payload = {
               data:data,
               photo:photo

@@ -56,7 +56,8 @@
                                             </svg>
                                         </div>
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <img @click="downloadPDF(data)" src="/images/pdf.svg" alt="" height="24"> 
+                                            <img :id="`entry-${data.id}-button`" @click="downloadPDF(data)" src="/images/pdf.svg" alt="" height="24"> 
+                                            <img class="hidden" src="/images/loading.gif" :id="`entry-${data.id}-loader`" alt="" height="24"> 
                                         </div>
                                         <div class="w-4 transform hover:text-purple-500 hover:scale-110">
                                             <svg @click="deleteEntry(data)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -79,15 +80,14 @@
  import {mapGetters} from 'vuex';
 import axios from 'axios';
 export default {
-  name: "Table",     
+    name: "Table",    
     computed:{
     ...mapGetters({
-      isLoading : 'entry/isLoading', 
-      errorMsg : 'entry/errorMsg', 
-      tableData : 'entry/tableData'
+        isLoading : 'entry/isLoading', 
+        errorMsg : 'entry/errorMsg', 
+        tableData : 'entry/tableData'
     })
-  },
- 
+    }, 
   created(){
     this.fetchData();
   },
@@ -120,17 +120,23 @@ export default {
             image.src = window.URL.createObjectURL(response.data);
         });
     },
-    downloadPDF(entry){  
-        axios({url: `./api/pdf-download/${entry.id}`,
-    method:'GET',
-    responseType:'blob'
+    downloadPDF(entry){ 
+        document.getElementById(`entry-${entry.id}-loader`).classList.remove('hidden');            
+        document.getElementById(`entry-${entry.id}-button`).classList.add('hidden'); 
+        axios({
+            url: `./api/pdf-download/${entry.id}`,
+            method:'GET',
+            responseType:'blob'
         }).then(response => {
+            document.getElementById(`entry-${entry.id}-loader`).classList.add('hidden');            
+            document.getElementById(`entry-${entry.id}-button`).classList.remove('hidden'); 
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
             link.setAttribute('download',  entry.name + " - " + entry.nid + '.pdf');
             document.body.appendChild(link);
             link.click();
+           
         });
     }
   }

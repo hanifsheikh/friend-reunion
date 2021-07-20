@@ -21,8 +21,8 @@
                               <td class="px-6 py-1 text-left">
                                     <div class="flex items-center">
                                         <div class="mr-2">
-                                            <img class="object-cover w-10 h-10 rounded-full hidden" :id="`entry-${data.id}-image`" :src="getPhoto(data)"/>
-                                         <img class="object-cover w-10 h-10 rounded-full" src="/images/loading.gif" :id="`entry-${data.id}-image-loader`"> 
+                                            <img class="object-cover w-10 h-10 rounded-full hidden" :id="`entry-${data.id}-image`" :src="getPhoto(data.photo, data.id)"/>
+                                         <img class="object-cover w-10 h-10 rounded-full" src="/images/image-loader.gif" :id="`entry-${data.id}-image-loader`"> 
                                         </div>
                                         <span class="font-medium">{{data.name}}</span>
                                     </div>
@@ -105,26 +105,28 @@ export default {
         this.$store.dispatch("entry/fetchData");
     },
     deleteEntry(data){
-           var photo = document.getElementById(`entry-${data.id}`).src;
+           var photo = document.getElementById(`entry-${data.id}-image`).src;
           var payload = {
               data:data,
               photo:photo
           }
         this.$store.dispatch("entry/deleteModal", payload);
     },
-    getPhoto(entry){   
-
-        axios({url: `./api/getPicture/${entry.photo}`,
-    method:'GET',
-    responseType:'blob'
+    getPhoto(photo, id){      
+        axios({url: `./api/getPicture/${photo}`,
+            method:'GET',
+            responseType:'blob'
         }).then(response => {
-          document.getElementById(`entry-${entry.id}-image-loader`).remove(); 
-            var image = document.getElementById(`entry-${entry.id}-image`);  
-            image.src = window.URL.createObjectURL(response.data);
-            image.classList.remove('hidden');
-        });
+            document.getElementById(`entry-${id}-image-loader`) ? document.getElementById(`entry-${id}-image-loader`).classList.add('hidden') : null; 
+            var image = document.getElementById(`entry-${id}-image`);
+            image.classList.remove('hidden')
+            image.src = window.URL.createObjectURL(response.data);  
+            });
+    
     },
     downloadPDF(entry){ 
+        if(entry){
+        
         document.getElementById(`entry-${entry.id}-loader`).classList.remove('hidden');            
         document.getElementById(`entry-${entry.id}-button`).classList.add('hidden'); 
         axios({
@@ -142,6 +144,7 @@ export default {
             link.click();
            
         });
+        }
     }
   }
 };

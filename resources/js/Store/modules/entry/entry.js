@@ -76,8 +76,7 @@ const entry = {
     destroyData(context, payload){
       context.commit("DELETING", true);
       axios.post(`./api/destroy/`, {id:payload}).then((response) => {  
-        context.commit("DELETE_TABLE_ENTRY", response.data);    
-        console.log(response.data.name);
+        context.commit("DELETE_TABLE_ENTRY", response.data);
         Vue.noty.success('<b>' + response.data.name + "</b> has been deleted!");   
         context.commit("DELETING", false);
         context.commit("CLOSE_MODAL");

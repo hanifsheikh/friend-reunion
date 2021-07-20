@@ -23,7 +23,7 @@ class EntryController extends Controller
      */
     public function index()
     {
-        $entries = Entry::all();
+        $entries = Entry::orderBy('id', 'DESC')->get();
         return response()->json($entries, 200);
     }
 

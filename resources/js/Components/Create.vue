@@ -61,7 +61,7 @@
 									<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /> </svg>
 							</div>
 						</div>
-						<p v-if="date_of_birth_error" class="text-red-500 mb-3 text-xs italic"> Year should not be greater than 1985</p>
+						<p v-if="date_of_birth_error" class="text-red-500 mb-3 text-xs italic"> Please provide valid date of birth</p>
 					</div>
 					<div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6">
 						<label class="block text-gray-500 text-sm font-bold mb-2" for="marital-status"> Marital Status </label>
@@ -401,7 +401,7 @@ export default {
         error = mailformat.test(input.value) ? false : true;
       } else if (type == "date") {
         var date = new Date(input.value);
-        var limit = new Date('Jan 1, 1986');         
+        var limit = new Date('Jan 1, 1993');         
         error = !Date.parse(input.value) || date.getTime() > limit.getTime()  ? true : false;
       } else {
         error = !this.sanitize(id, type).length ? true : false;
@@ -454,10 +454,10 @@ export default {
         let field = document.getElementById("date-of-birth");
         let input = this.date_of_birth;
         let date = new Date(input);
-        let limit = new Date('Jan 1, 1986'); 
+        let limit = new Date('Jan 1, 1993'); 
         this.date_of_birth_error = !Date.parse(input) || date.getTime() > limit.getTime()  ? true : false; 
         this.date_of_birth_error ? field.classList.add("border-red-500") : field.classList.remove("border-red-500");
-  
+       
       // check if photo error
       this.photo_error = !this.selectedFile ? true : false;
 
@@ -467,7 +467,7 @@ export default {
         !this.contact_no_error &&
         this.mailing_address &&
         !this.email_address_error &&
-        this.date_of_birth &&
+        !this.date_of_birth_error &&
         this.selectedFile
       ) {
         return true;

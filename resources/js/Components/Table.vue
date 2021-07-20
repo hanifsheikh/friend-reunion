@@ -21,7 +21,8 @@
                               <td class="px-6 py-1 text-left">
                                     <div class="flex items-center">
                                         <div class="mr-2">
-                                            <img class="object-cover w-10 h-10 rounded-full" :id="`entry-${data.id}`" :src="getPhoto(data.photo, data.id)"/>
+                                            <img class="object-cover w-10 h-10 rounded-full hidden" :id="`entry-${data.id}-image`" :src="getPhoto(data)"/>
+                                         <img class="object-cover w-10 h-10 rounded-full" src="/images/loading.gif" :id="`entry-${data.id}-image-loader`"> 
                                         </div>
                                         <span class="font-medium">{{data.name}}</span>
                                     </div>
@@ -111,13 +112,16 @@ export default {
           }
         this.$store.dispatch("entry/deleteModal", payload);
     },
-    getPhoto(photo, id){  
-        axios({url: `./api/getPicture/${photo}`,
+    getPhoto(entry){   
+
+        axios({url: `./api/getPicture/${entry.photo}`,
     method:'GET',
     responseType:'blob'
         }).then(response => {
-            var image = document.getElementById(`entry-${id}`);  
+          document.getElementById(`entry-${entry.id}-image-loader`).remove(); 
+            var image = document.getElementById(`entry-${entry.id}-image`);  
             image.src = window.URL.createObjectURL(response.data);
+            image.classList.remove('hidden');
         });
     },
     downloadPDF(entry){ 

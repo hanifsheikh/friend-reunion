@@ -177,7 +177,7 @@
 						<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 							<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
 							<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-						</svg> Saving.. </button>
+						</svg> Saving {{savingProgress}}%  </button>
 				</div>
 			</form>
 		</div>
@@ -217,7 +217,6 @@ export default {
   name: "Create",
   created() {
     let ratio = window.innerHeight < window.innerWidth ? 16 / 9 : 9 / 16;
-
     this.picture.width =
       window.innerWidth < 1280 ? window.innerWidth : 1280;
     this.picture.height = window.innerWidth / ratio;
@@ -226,6 +225,7 @@ export default {
     return {
       picture: {},
       saving: false,
+      savingProgress: 0,
       form_submitted: false,
       blood_group: "",
       name: "",
@@ -261,7 +261,6 @@ export default {
   methods: {
     capturePhoto() {
       this.isPhotoTaken = true;
-
       const ctx = this.$refs.canvas.getContext("2d");
       ctx.scale(-1, 1);
       ctx.drawImage(
@@ -342,7 +341,10 @@ export default {
         headers: {
           Accept: "application/json",
           "content-type": "multipart/form-data"
-        }
+        },
+        onUploadProgress: function( progressEvent ) {
+        this.savingProgress = parseInt( Math.round( ( progressEvent.loaded / progressEvent.total ) * 100 ));
+      }.bind(this)
       };
       const formData = new FormData();
       formData.append("name", this.name);
@@ -548,6 +550,7 @@ export default {
       this.educational_qualification = "S.S.C";
       this.professional_status = "Unemployed";
       this.religion = "Islam";
+      this.savingProgress = 0;
       this.presence_of_upcoming_event = true;
     }
   }

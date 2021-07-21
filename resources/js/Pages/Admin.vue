@@ -2,7 +2,7 @@
  <div>
       <!-- Header -->
       <div class="w-full flex items-center bg-gray-800 justify-between h-12 text-white z-10 shadow-xl">
-        <div class="flex pl-3 w-80 h-12 bg-gray-800 dark:bg-gray-800 border-none">
+        <div class="flex pl-3 w-50 h-12 bg-gray-800 dark:bg-gray-800 border-none">
         <ul class="flex mt-3">     
         <li class="ml-3 cursor-pointer">     
           <p @click="excelDownload" class="hover:opacity-50 transition ease-in-out duration-300"> <img  src="/images/excel.png" alt="/images/excel.png" class="h-5 inline-flex object-contain"> Excel Download</p> 
@@ -14,7 +14,7 @@
         <div class="flex justify-between items-center h-12 bg-gray-800 dark:bg-gray-800 header-right">     
           
           <ul class="flex items-center">         
-           <li class="mr-2">     
+           <li class="mr-1">     
           <img src="/images/person.png" alt="/images/person.png" class="h-6 inline-flex object-contain -mt-1"><p class="inline-flex">  {{totalPersons}}</p> 
         </li>
             <li>

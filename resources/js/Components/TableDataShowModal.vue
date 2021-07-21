@@ -1,5 +1,5 @@
 <template>
- <div class="my-3 w-screen h-screen flex absolute left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover" id="modal-id" style="backdrop-filter: blur(2px);">
+ <div class="py-3 w-screen h-screen flex absolute left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover" id="modal-id" style="backdrop-filter: blur(2px);">
    	<div class="fixed bg-black opacity-80 inset-0 z-0"></div>
     <div class="w-full max-w-3xl p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white">
           <div
@@ -33,7 +33,7 @@
     <p class="font-light text-gray-600 py-1"> Alternative Contact No : <span class="font-medium">{{ data.alternative_contact_no }}</span></p>
     <p class="font-light text-gray-600 py-1"> Mailing Address : <span class="font-medium">{{ data.mailing_address }}</span></p>
     <p class="font-light text-gray-600 py-1"> Email Address : <span class="font-medium">{{ data.email_address }}</span></p>
-    <p class="font-light text-gray-600 py-1"> Date of Birth : <span class="font-medium">{{ data.date_of_birth | moment("Do MMM YYYY") }}</span></p>
+    <p class="font-light text-gray-600 py-1"> Date of Birth : <span class="font-medium" v-if="data.date_of_birth">{{ data.date_of_birth | moment("Do MMM YYYY") }}</span></p>
     <p class="font-light text-gray-600 py-1"> Marital Status : <span class="font-medium">{{ data.marital_status }}</span></p>
     <p class="font-light text-gray-600 py-1"> Marriage Anniversary : <span class="font-medium">{{ data.marriage_anniversary }}</span></p>
     <p class="font-light text-gray-600 py-1"> Spouse Name : <span class="font-medium">{{ data.spouse_name }}</span></p>

@@ -1,6 +1,6 @@
 <template>
     <div v-if="data.data"
-        class="my-3 w-screen h-screen flex absolute left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
+        class="py-3 w-screen h-screen flex absolute left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
         id="modal-id"
         style="backdrop-filter: blur(2px);"
     >
@@ -10,7 +10,7 @@
             class="w-full max-w-md p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white"
         > 
             <div class="flex items-center justify-center">
-                <div class="flex w-full justify-center items-center px-3 mb-1">
+                <div class="flex w-full justify-center items-center px-3 my-2">
                     <img
                         class="w-60 h-60 object-cover rounded shadow-md border-8 border-white"
                         :src="data.photo"
@@ -21,13 +21,13 @@
             </div>
             <div class="flex w-full items-center justify-center px-3">
                 <p
-                    class="text-gray-600 py-2 items-center justify-center font-bold"
+                    class="text-gray-600 pt-2 items-center justify-center font-bold"
                 >
                     {{ data.data.name }}
                 </p>
             </div>
                    <!--footer-->
-        <div class="flex w-full p-3 mt-2 justify-between" v-if="!isDeleting">
+        <div class="flex w-full p-2 justify-between" v-if="!isDeleting">
             <button  @click="closeModal" class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
                 Cancel
             </button>            

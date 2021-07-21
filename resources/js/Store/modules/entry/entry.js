@@ -9,9 +9,13 @@ const entry = {
     isDeleting: false,
     tableData:[],
     errorMsg: null,
+    totalPersons: 0,
     selectedEntry:{}
   }),
   getters: {
+    totalPersons: (state) => {
+      return state.totalPersons;
+    },
     isLoading: (state) => {
       return state.isLoading;
     },
@@ -59,6 +63,10 @@ const entry = {
       state.tableData = state.tableData.filter(function (e) {
         return e.id != payload.id
       });        
+      state.totalPersons -= 1
+    },
+    SET_TOTAL_PERSONS(state, payload) {      
+      state.totalPersons = payload;
     },
     CLOSE_MODAL(state) {      
       state.showModalActive = false;
@@ -80,7 +88,7 @@ const entry = {
     destroyData(context, payload){
       context.commit("DELETING", true);
       axios.post(`./api/destroy/`, {id:payload}).then((response) => {  
-        context.commit("DELETE_TABLE_ENTRY", response.data);
+        context.commit("DELETE_TABLE_ENTRY", response.data);       
         Vue.noty.success('<b>' + response.data.name + "</b> has been deleted!");   
         context.commit("DELETING", false);
         context.commit("CLOSE_MODAL");
@@ -99,7 +107,8 @@ const entry = {
       context.commit("SET_ERROR_MESSAGE", null);
       context.commit("LOADING", true);
       axios.get(`./api/fetchTableData`).then((response) => { 
-        context.commit('SET_TABLE_DATA', response.data)
+        context.commit('SET_TABLE_DATA', response.data.entries)
+        context.commit('SET_TOTAL_PERSONS', response.data.total)
         context.commit("LOADING", false);
       }).catch(error => {
         context.commit("LOADING", false);

@@ -170,6 +170,11 @@
                 I agree to join this dynamic team and ready to contribute my competency. 
                 </span>
           </div>
+					<div v-if="errorStatus" class="px-4 mt-3 flex items-center justify-center w-full">
+					  <span class="text-md font-bold text-red-800 bg-red-300 rounded-full px-5 py-2">
+                Something went wrong! Try Again. 
+                </span>
+          </div>
 				</div>
 				<div class="flex w-full justify-center">
 					<button v-if="!saving" @click="submit" class="bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-2 px-6 border-b-4 border-indigo-700 hover:border-indigo-500 transition ease-in-out rounded"> Submit </button>
@@ -177,7 +182,7 @@
 						<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 							<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
 							<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-						</svg> Saving {{savingProgress}}%  </button>
+						</svg> Sending {{savingProgress}}%  </button>
 				</div>
 			</form>
 		</div>
@@ -255,7 +260,8 @@ export default {
       presence_of_upcoming_event: true,
       isShutterOpen: false,
       isShutterLoading: false,
-      isPhotoTaken: false
+      isPhotoTaken: false,
+      errorStatus:false,
     };
   },
   methods: {
@@ -337,6 +343,7 @@ export default {
       });
     },
     async saveData() {
+       this.errorStatus = false
       const config = {
         headers: {
           Accept: "application/json",
@@ -376,22 +383,26 @@ export default {
       try {
         await axios
           .post("./api/store", formData, config)
-          .then(response => {
+          .then(response => {   
+                     
             this.$noty.success(
               "<b>" +
                 response.data.name +
                 "</b> has been registered!"
             );
-            this.clearForm();
+            this.clearForm(); 
           })
-          .catch(error => {
+          .catch(error => {            
             let data = error.response.data;
             for (const property in data) {
               this.$noty.warning(`${data[property]}`);
             }
-          });
+      if(error.response.status == 500){
+        this.errorStatus = true
+      }
+     });
       } catch (exception) {
-        this.$noty.error(`Network problem, Try Again.`);
+        this.$noty.error(`Network problem, Try Again.`);        
         this.saving = false;
       }
     },

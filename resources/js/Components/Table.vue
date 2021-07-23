@@ -122,11 +122,11 @@ export default {
             method:'GET',
             responseType:'blob'
         }).then(response => {
-            document.getElementById(`entry-${id}-image-loader`) ? document.getElementById(`entry-${id}-image-loader`).classList.add('hidden') : null; 
             var image = document.getElementById(`entry-${id}-image`);
-            image.classList.remove('hidden')
             image.src = window.URL.createObjectURL(response.data);  
             this.$store.dispatch('entry/setBlobImageURL', { blob: image.src , id: id});
+            document.getElementById(`entry-${id}-image-loader`) ? document.getElementById(`entry-${id}-image-loader`).classList.add('hidden') : null; 
+            image.classList.remove('hidden')
             });
     
     },

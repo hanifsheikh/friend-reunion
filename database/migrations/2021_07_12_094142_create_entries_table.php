@@ -17,11 +17,11 @@ class CreateEntriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('photo');
-            $table->string('nid')->unique();
+            $table->string('nid')->unique()->nullable();
             $table->string('contact_no')->unique();
             $table->string('alternative_contact_no')->nullable();
             $table->text('mailing_address');
-            $table->string('email_address');
+            $table->string('email_address')->nullable();
             $table->date('date_of_birth');
             $table->string('blood_group')->nullable();
             $table->string('marital_status')->default('Single');

@@ -64,11 +64,11 @@ class EntryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10000',
-            'nid' => 'required|unique:entries|string|min:9|max:17',
+            'nid' => 'nullable|unique:entries|string|min:9|max:17',
             'contact_no' => 'required|unique:entries|digits_between:9,11',
             'alternative_contact_no' => 'nullable|digits_between:9,11',
             'mailing_address' => 'required',
-            'email_address' => 'required',
+      
             'date_of_birth' => 'required',
             'marital_status' => 'required',
             'educational_qualification' => 'required',

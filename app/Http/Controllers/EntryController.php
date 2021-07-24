@@ -117,7 +117,7 @@ class EntryController extends Controller
         // Get file from request
         $file = $request->file('photo');  
         // Create unique file name
-        $fileNameToStore = str_replace(" ","",$request->nid) . '_'. $request->contact_no . '.' . 'png';
+        $fileNameToStore = strtolower(str_replace(" ","-",$request->name)) . '-'. $request->contact_no . '.' . 'jpg';
         // Refer image to method resizeImage
         $save = $this->resizeImage($file, $fileNameToStore);
         if ($save) {
@@ -129,10 +129,10 @@ class EntryController extends Controller
     public function resizeImage($file, $fileNameToStore)
     {
         // Resize image
-        $resize = Image::make($file)->orientate()->resize(1024, null, function($constraint){ 
+        $resize = Image::make($file)->orientate()->resize(600, null, function($constraint){ 
             $constraint->upsize();
             $constraint->aspectRatio();  
-        })->encode('png'); 
+        })->encode('jpg', 75); 
         // Put image to storage
         $save = Storage::put("public/images/{$fileNameToStore}", $resize->__toString());
 
@@ -150,7 +150,7 @@ class EntryController extends Controller
     {
         $entry = Entry::find($id);
         $data = [
-            "title" => $entry->name . ' - ' . $entry->nid,
+            "title" => $entry->name . ' - ' . $entry->contact_no,
             "entry" => $entry,
          "image" => $entry->photo];
         $pdf = PDF::loadView('pdf', $data);   

@@ -21,8 +21,8 @@
                 <td class="px-6 py-1 text-left">
                   <div class="flex items-center">
                     <div class="mr-2">
-                      <img class="object-cover w-10 h-10 rounded-full hidden" :id="`entry-${data.id}-image`" :src="getPhoto(data.photo, data.id)" />
-                      <img class="object-cover w-10 h-10 rounded-full" src="/images/image-loader.gif" :id="`entry-${data.id}-image-loader`">
+                      <img class="object-cover w-10 h-10 rounded-full" :id="`entry-${data.id}-image`" :src="`/oe/igc3wlnryrtF-sZdkdKv3opG4mM/${data.photo}`" />
+                      <!-- <img class="object-cover w-10 h-10 rounded-full" src="/images/image-loader.gif" :id="`entry-${data.id}-image-loader`"> -->
                     </div>
                     <span class="font-medium">{{data.name}}</span>
                   </div>
@@ -101,7 +101,12 @@ export default {
   },
   methods: {
     viewEntry(data) {
-      this.$store.dispatch("entry/viewEntry", data);
+      var photo = document.getElementById(`entry-${data.id}-image`).src;
+      var payload = {
+        data: data,
+        photo: photo,
+      };
+      this.$store.dispatch("entry/viewEntry", payload);
     },
     fetchData() {
       this.$store.dispatch("entry/fetchData");

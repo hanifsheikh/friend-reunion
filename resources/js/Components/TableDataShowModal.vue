@@ -7,7 +7,7 @@
         </svg>
       </div>
       <!--content-->
-      <div class="flex flex-wrap" v-if="data">
+      <div class="flex flex-wrap" v-if="data.data">
         <!--body-->
         <div class="w-full md:w-1/2 lg:w-1/2 px-3 mb-6">
           <img class="w-full rounded shadow-md border-8 border-white" :src="data.photo" alt="" v-if="data.photo">

@@ -65,7 +65,7 @@
     </div>
         
         <div class="float-right d-inline">
-            <img src="{{storage_path('/app/public/images/'.$entry->photo)}}" alt="{{$entry->photo}}" style="width: 300px;">
+            <img src="{{public_path('/oe/igc3wlnryrtF-sZdkdKv3opG4mM/'.$entry->photo)}}" alt="{{$entry->photo}}" style="width: 300px;">
         </div>
     </div>
 </body>
